@@ -95,7 +95,8 @@ class Game extends React.Component {
 
     let status;
     if (winner) {
-      status = 'winner: ' + winner;
+      status = 'winner: ' + winner.winner;
+      // console.log(current.squares);
     } else {
       status = 'Next Player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -117,23 +118,6 @@ class Game extends React.Component {
   }
 }
 
-// history = [
-//   {
-//     squares: [
-//       null, null, null,
-//       null, null, null,
-//       null, null, null,
-//     ]
-//   },
-//   {
-//     squares: [
-//       null, null, null,
-//       null, null, null,
-//       null, null, null,
-//     ]
-//   }
-// ]
-
 ReactDOM.render(
   <Game />,
   document.getElementById('root')
@@ -153,7 +137,10 @@ function calculateWinner (squares) {
   for (let i=0; i < lines.length; i++) {
     const [a,b,c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      squares.winner = squares[a];
+      squares.numbers = [a,b,c];
+      console.log(squares);
+      return squares;
     }
   }
   return null;
