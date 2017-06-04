@@ -35,6 +35,10 @@ class Board extends React.Component {
         </div>
       }
       </div>
+
+      {objects.map(function(object, i){
+    return <ObjectRow obj={object} key={i} />;
+})}
       //  <div>
       //   <div className="board-row">
       //     {this.renderSquare(0)}
